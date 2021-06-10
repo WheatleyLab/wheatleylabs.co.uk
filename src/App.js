@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss'
+import Rain from './Rain'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Rain />
+      <div className="content">
+        <h1>WheatleyLabs</h1>
+        <a href="mailto: craig@wheatleylabs.co.uk">Get in touch</a>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
