@@ -13,13 +13,45 @@
     z-index: 5;
     pointer-events: none;
   }
+  .change-me {
+    margin-left: 98px;
+  }
   .content {
     z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
-    h1 {
-      margin: 0 0 8px;
+    width: 100%;
+    overflow: hidden;
+    .input {
+      &#title-calc {
+        margin: 0;
+        height: 0;
+        opacity: 0;
+        pointer-events: none;
+        margin: 10px 0 -10px;
+      }
+      &#title-text {
+        margin: 0 0 24px;
+        min-width: 100%;
+        &::selection {
+          background: #ff00dd; /* WebKit/Blink Browsers */
+        }
+        &::-moz-selection {
+          background: #ff00dd; /* Gecko Browsers */
+        }
+      }
+      font-size: 40px;
+      @media (min-width: 415px) {
+        font-size: 60px;
+      }
+      line-height: 44px;
+      appearance: none;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      text-align: center;
+      color: white;
     }
     a {
       color: white;
