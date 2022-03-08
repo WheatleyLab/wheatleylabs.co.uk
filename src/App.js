@@ -38,7 +38,7 @@ class App extends React.Component {
             defaultValue="WheatleyLabs"
             onChange={this.handleChange}
           />
-          <a href="mailto: craig@wheatleylabs.co.uk">Get in touch</a>
+          <a href="mailto: craigster1991@gmail.com">Get in touch</a>
         </div>
       </div>
     )
