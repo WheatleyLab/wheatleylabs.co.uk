@@ -6,14 +6,21 @@ const random = (min, max) => {
   return min + (max - min) * Math.random()
 }
 
-const randomPosition = (drop, w) => {
-  drop.x = random(0, w)
+const randomPosition = (drop) => {
+  drop.x = random(0, window.innerWidth)
   drop.y = random(-200, -100)
   drop.speed = (random(15,20) * DROP_SPEED_MULTIPLIER)
   drop.delay = random(0, 500)
 }
 
+const collision = (a, b) => {
+  const ab = a.getBounds()
+  const bb = b.getBounds()
+  return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height
+}
+
 export {
   random,
-  randomPosition
+  randomPosition,
+  collision
 }

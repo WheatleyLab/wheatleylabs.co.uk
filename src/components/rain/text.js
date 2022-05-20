@@ -9,8 +9,6 @@ const getTitleCalcParams = () => {
 const addTextBackground = () => {
   const titleText = document.getElementById('title-calc')
   if (!titleText) return setTimeout(addTextBackground, 1000)
-  console.log('here')
-  console.log(titleTextBg)
   titleTextBg.beginFill(0xFF0000)
   titleTextBg.alpha = 0
   const gtpData = getTitleCalcParams()

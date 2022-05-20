@@ -14,7 +14,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-document.getElementsByClassName('App')[0].prepend(window?.app?.view)
+document.getElementsByClassName('App')[0].prepend(window?.pixiApp?.view)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

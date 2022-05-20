@@ -2,19 +2,17 @@ import react from 'react'
 import './rain.scss'
 import { DROP_COUNT } from './constants'
 import { addRain } from './raindrop'
-import { randomPosition } from './helpers'
+import { collision, random, randomPosition } from './helpers'
 import { addTextBackground, updateTextBackground } from './text'
 import { pixiApp, rainContainer, textBgContainer, titleTextBg } from './pixi'
+import { addSplash } from './splash'
 
 const Rain = react.memo(() => {
 
   let drops = []
-  let resizeTimeout, w, h
+  let resizeTimeout
 
-  const init = () => {
-    w = window.innerWidth
-    h = window.innerHeight
-    
+  const init = () => {    
     pixiApp.stage.addChild(rainContainer)
     pixiApp.stage.addChild(textBgContainer)
     window.pixiApp = pixiApp
@@ -22,12 +20,6 @@ const Rain = react.memo(() => {
     resize()
     addTextBackground(titleTextBg, textBgContainer)
     startRain()
-  }
-
-  const collision = (a, b) => {
-    const ab = a.getBounds()
-    const bb = b.getBounds()
-    return ab.x + ab.width > bb.x && ab.x < bb.x + bb.width && ab.y + ab.height > bb.y && ab.y < bb.y + bb.height
   }
 
   const stopRain = () => {
@@ -41,18 +33,27 @@ const Rain = react.memo(() => {
   const startRain = () => {
     clearTimeout(resizeTimeout)
     pixiApp.start()
-    drops = addRain(w * DROP_COUNT)
+    drops = addRain(window.innerWidth * DROP_COUNT)
   }
 
   const resize = () => {
-    w = window.innerWidth
-    h = window.innerHeight
+    const w = window.innerWidth
+    const h = window.innerHeight
     pixiApp.renderer.resize(w, h)
     stopRain()
     // reset timeout on every resize event
     clearTimeout(resizeTimeout)
     // wait for a 1000ms clear after a resiuze event
     resizeTimeout = setTimeout(startRain, 100)
+  }
+
+  const resetDrop = (hitText, i) => {
+    const { x, width } = drops[i].getBounds()
+    const { y } = titleTextBg.getBounds()
+    const newY = hitText ? (y - random(0, 8)) : (window.innerHeight - 8)
+    const newX = x - width
+    if (i%3 === 0) addSplash(newX, newY) // reduce the number of splashes 
+    randomPosition(drops[i])
   }
 
   const tick = () => {
@@ -64,8 +65,8 @@ const Rain = react.memo(() => {
         drops[i].delay -= 1 // wait for delay to count down
       }
       else {
-        if (collision(drops[i], titleTextBg)) randomPosition(drops[i], w) // hit the text, reset
-        else if (drops[i].y > window.innerHeight) randomPosition(drops[i], w) // bottom of screen, reset
+        if (collision(drops[i], titleTextBg)) resetDrop(true, i) // hit the text, reset
+        else if (drops[i].y > window.innerHeight) resetDrop(false, i) // bottom of screen, reset
         else drops[i].y += drops[i].speed // animate down the screen
       }
       i++
@@ -76,9 +77,7 @@ const Rain = react.memo(() => {
   tick()
   init()
 
-  return (
-    <div></div>
-  )
+  return (null)
 })
 
 
