@@ -1,4 +1,4 @@
-.App {
+.home-container {
   text-align: center;
   background-color: #282c34;
   min-height: 100vh;
@@ -12,8 +12,8 @@
   canvas {
     z-index: 5;
     pointer-events: none;
-  }
-  .change-me {
-    margin-left: 98px;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }

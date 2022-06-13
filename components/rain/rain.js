@@ -1,5 +1,4 @@
 import react from 'react'
-import './rain.scss'
 import { DROP_COUNT } from './constants'
 import { addRain } from './raindrop'
 import { collision, random, randomPosition } from './helpers'
