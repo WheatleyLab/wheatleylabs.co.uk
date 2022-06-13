@@ -11,21 +11,18 @@ export default function Home() {
   let needLoader = true
 
   const pixiInjector = () => {
-    needLoader = false
-    document.getElementsByClassName(homeContainer)[0].prepend(window?.pixiApp?.view)
-    window.removeEventListener('load', pixiInjector)
+    console.log('injector')
+    if (needLoader) {
+      console.log('add pixi', homeContainer)
+      needLoader = false
+      document.getElementsByClassName(homeContainer)[0].prepend(window?.pixiApp?.view)
+      window.removeEventListener('load', pixiInjector)
+    }
   }
 
   useEffect(() => {
-    if (needLoader) window.addEventListener('load', pixiInjector);
-    // console.log(pixiOnPage, window?.pixiApp?.view)
-    // if (!pixiOnPage) {
-    //   if (window?.pixiApp?.view) {
-    //     document.getElementsByClassName('app_body')[0].prepend(window?.pixiApp?.view)
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    //     pixiOnPage = true
-    //   }
-    // }
+    console.log('effec trigger')
+    window.addEventListener('load', pixiInjector);
   })
 
   const Rain = dynamic(() => import('../components/rain/rain'), {
