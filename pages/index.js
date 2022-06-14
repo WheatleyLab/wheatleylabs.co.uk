@@ -11,18 +11,19 @@ export default function Home() {
   let needLoader = true
 
   const pixiInjector = () => {
-    console.log('injector')
-    if (needLoader) {
-      console.log('add pixi', homeContainer)
-      needLoader = false
-      document.getElementsByClassName(homeContainer)[0].prepend(window?.pixiApp?.view)
-      window.removeEventListener('load', pixiInjector)
+    if (window?.pixiApp?.view) {
+      if (needLoader) {
+        needLoader = false
+        document.getElementsByClassName(homeContainer)[0].prepend(window?.pixiApp?.view)
+        document.removeEventListener('DOMContentLoaded', pixiInjector)
+      }
     }
+    else setTimeout(() => pixiInjector(), 50);
   }
 
   useEffect(() => {
-    console.log('effec trigger')
-    window.addEventListener('load', pixiInjector);
+    if (document.readyState != 'loading') pixiInjector()
+    else document.addEventListener('DOMContentLoaded', pixiInjector)
   })
 
   const Rain = dynamic(() => import('../components/rain/rain'), {
