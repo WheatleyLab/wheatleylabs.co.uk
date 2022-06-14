@@ -11,21 +11,19 @@ export default function Home() {
   let needLoader = true
 
   const pixiInjector = () => {
-    needLoader = false
-    document.getElementsByClassName(homeContainer)[0].prepend(window?.pixiApp?.view)
-    window.removeEventListener('load', pixiInjector)
+    if (window?.pixiApp?.view) {
+      if (needLoader) {
+        needLoader = false
+        document.getElementsByClassName(homeContainer)[0].prepend(window?.pixiApp?.view)
+        document.removeEventListener('DOMContentLoaded', pixiInjector)
+      }
+    }
+    else setTimeout(() => pixiInjector(), 50);
   }
 
   useEffect(() => {
-    if (needLoader) window.addEventListener('load', pixiInjector);
-    // console.log(pixiOnPage, window?.pixiApp?.view)
-    // if (!pixiOnPage) {
-    //   if (window?.pixiApp?.view) {
-    //     document.getElementsByClassName('app_body')[0].prepend(window?.pixiApp?.view)
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    //     pixiOnPage = true
-    //   }
-    // }
+    if (document.readyState != 'loading') pixiInjector()
+    else document.addEventListener('DOMContentLoaded', pixiInjector)
   })
 
   const Rain = dynamic(() => import('../components/rain/rain'), {
