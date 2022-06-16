@@ -1,6 +1,7 @@
 import Image from "next/image"
 import React, { useContext } from "react"
 import AppContext from "../../contexts/app"
+import { sendToGoogleAnalytics } from '../../helpers/ga'
 import {
   content,
   contentInput,
@@ -14,10 +15,17 @@ const Content = () => {
 
   const { appState, setAppState } = useContext(AppContext)
 
-  const updateTitle = evt => setAppState({
-    ...appState,
-    title: evt.target.value
-  })
+  const updateTitle = evt => {
+    setAppState({
+      ...appState,
+      title: evt.target.value
+    })
+
+    sendToGoogleAnalytics({
+      name: 'title-change',
+      value: evt.target.value,
+    })
+  }
 
   return (
     <div className={content}>
