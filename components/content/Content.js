@@ -1,7 +1,7 @@
 import Image from "next/image"
 import React, { useContext } from "react"
 import AppContext from "../../contexts/app"
-import { sendToGoogleAnalytics } from '../../helpers/ga'
+import { sendToGoogleAnalytics } from '../../utils/ga'
 import {
   content,
   contentInput,
