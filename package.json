@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.4",
+    "graphql": "^16.8.1",
     "gsap": "^3.10.4",
     "next": "12.1.6",
     "pixi.js": "^6.4.2",
