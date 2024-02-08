@@ -41,7 +41,7 @@ const Content = () => {
           defaultValue={appState.title}
           onChange={updateTitle}
         />
-        <a className={contentAnchor} href="mailto: craigster1991@gmail.com">Get in touch</a>
+        <a className={contentAnchor} href="mailto: craig@wheatleylabs.co.uk">Get in touch</a>
       </div>
   )
 }
