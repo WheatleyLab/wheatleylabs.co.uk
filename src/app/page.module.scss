@@ -1,0 +1,41 @@
+@use '../styles/tokens' as *;
+@use '../styles/mixins' as *;
+
+.page {
+  padding: $spacing-xl 0;
+}
+
+.box {
+  width: 50vw;
+  height: 200vh;
+  background-color: red;
+  opacity: 0.1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: scroll;
+  // hide scrollbar
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.innerBox {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  margin-bottom: 200px;
+}
+
+.innerBoxWide {
+  width: 200px;
+  height: 100px;
+  background-color: green;
+}
