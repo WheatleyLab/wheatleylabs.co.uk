@@ -1,0 +1,49 @@
+@use 'tokens' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
+  color: $color-neutral-700;
+  background-color: $body-background;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  color: $color-primary;
+}
+
+h1 { font-size: $font-size-xxl; }
+h2 { font-size: $font-size-xl; }
+h3 { font-size: $font-size-lg; }
+
+a {
+  color: $color-secondary;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-secondary-light;
+  }
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
